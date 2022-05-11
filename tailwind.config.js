@@ -1,13 +1,17 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
+  theme: {
+    extend: {},
+  },
   daisyui: {
     themes: [
       {
-        light: {
-          ...require("daisyui/src/colors/themes")["[data-theme=light]"],
-          primary: "blue",
-          secondary: "red",
-          "primary-focus": "mediumblue",
+        doctortheme: {
+          primary: "#0FCFEC",
+          secondary: "#19D3AE",
+          accent:"#3A4256",
+          neutral:"#3d4451",
+          "base-100": "#ffffff",
         },
       },
     ],
