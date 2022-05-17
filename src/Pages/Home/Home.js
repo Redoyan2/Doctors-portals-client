@@ -1,7 +1,7 @@
 import React from 'react';
+import Footer from '../../Shared pages/Footer/Footer';
 import Banner from './Banner/Banner';
 import ContactUs from './ContactUs';
-import Footer from './Footer';
 import Info from './Info/Info';
 import MakeAppointment from './MakeAppointment';
 import Services from './Services';
