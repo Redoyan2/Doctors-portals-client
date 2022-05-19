@@ -15,8 +15,8 @@ const Login = () => {
     return (
         <div className='flex h-screen justify-center items-center'>
             <div className="card w-96 bg-base-100 shadow-xl">
-                <div className="card-body ">
-                    <h2 className="text-center font-bold text-2xl">LOGIN</h2>
+                <div className="card-body">
+                    <h2 className=" text-center text-2xl font-bold " >Login</h2>
 
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div class="form-control w-full max-w-xs">
@@ -33,18 +33,19 @@ const Login = () => {
                                         message: 'Email is Required'
                                     },
                                     pattern: {
-                                        value: /[A-Za-z]{3}/,
-                                        message: 'Provide a valid Email'
-                                    }
-                                })}
+                                      value: /[A-Za-z]{3}/,
+                                      message: 'Provide a valid Email'}
+                                  })}
                             />
-                                {errors.email?.type === 'required' && <span class="label-text-alt text-red-500">{errors.email.message}</span>}
-                                {errors.email?.type === 'pattern' && <span class="label-text-alt text-red-500">{errors.email.message}</span>}
-
+                            <label class="label">
+                            {errors.email?.type === 'required' && <span class="label-text-alt text-red-500">{errors.email.message}</span>}
+                            {errors.email?.type === 'pattern' && <span class="label-text-alt text-red-500">{errors.email.message}</span>}
+                            
+                            </label>
                         </div>
                         <div class="form-control w-full max-w-xs">
                             <label class="label">
-                                <span class="label-text my-2">Password:</span>
+                                <span class="label-text">Password:</span>
                             </label>
                             <input
                                 type="password"
@@ -56,20 +57,22 @@ const Login = () => {
                                         message: 'Password is Required'
                                     },
                                     minLength: {
-                                        value: 6,
-                                        message: 'Provide a valid Password'
-                                    }
-                                })}
+                                      value: 6,
+                                      message: 'Provide a valid Password'}
+                                  })}
                             />
-                            <label>
-                                {errors.password?.type === 'required' && <span class="label-text-alt text-red-500">{errors.password.message}</span>}
-                                {errors.password?.type === 'pattern' && <span class="label-text-alt text-red-500">{errors.password.message}</span>}
-                                </label>
+                            <label class="label">
+                            {errors.password?.type === 'required' && <span class="label-text-alt text-red-500">{errors.password.message}</span>}
+                            {errors.password?.type === 'pattern' && <span class="label-text-alt text-red-500">{errors.password.message}</span>}
+                                
+                            </label>
                         </div>
-                        <input className='btn btn-outline w-full max-w-xs mt-4' type="submit" value='Login' />
+                        <input className='btn btn-outline w-full max-w-xs' type="submit" value="Login"/>
                     </form>
+
                     <div className="divider">OR</div>
-                    <button className="btn btn-outline w-full max-w-xs "
+
+                    <button className="btn btn-outline w-full max-w-xs"
                         onClick={() => signInWithGoogle()}
                     >Continue with Google </button>
                 </div>
