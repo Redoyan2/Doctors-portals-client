@@ -1,28 +1,37 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../../Shared pages/Loading/Loading';
+import { async } from '@firebase/util';
 
 const SignUp = () => {
     const [createUserWithEmailAndPassword, user, loading, error, ] = useCreateUserWithEmailAndPassword(auth);
+    const [updateProfile, updating, UpdateError] = useUpdateProfile(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
-    let signInError;
+    const navigate = useNavigate();
+
+
+    let signUpError;
    
-    if(loading){
+    if(loading||updating){
         return <Loading></Loading>
         
     }
-    if(error){
-        signInError = <p className='text-red-600'>{error?.message}</p>
+    if(error||UpdateError){
+        signUpError = <p className='text-red-600'>{error?.message||UpdateError?.message}</p>
     }
-    if (user) {
-        console.log(user);
+    if (user||updateProfile) {
+        console.log(user||updateProfile);
     }
-    const onSubmit = data => {
-        createUserWithEmailAndPassword(data.email, data.password);
+    const onSubmit = async data => {
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName: data.name});
+        navigate('/appointment');
+        console.log('update done');
+        console.log(data);
     };
     return (
         <div className='flex h-screen justify-center items-center'>
@@ -102,7 +111,7 @@ const SignUp = () => {
                                 
                             </label>
                         </div>
-                        {signInError};
+                        {signUpError};
                         <input className='btn btn-outline w-full max-w-xs' type="submit" value="Sign Up"/>
                     </form>
                         <p className='text-m'>Already have an account? <Link className='text-primary font-bold ' to='/login'>Login Now</Link></p>
