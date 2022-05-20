@@ -13,7 +13,7 @@ const Review = ({ review }) => {
                 <div className='flex mt-5'>
                     <div className="avatar">
                         <div className="w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                            <img src={review.img} />
+                            <img src={review.img} alt="" />
                         </div>
                     </div>
                     <div className='mx-5'>
